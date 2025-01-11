@@ -34,73 +34,79 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error("Element with ID 'blogPosts' not found.");
     }
   }
+// Display blog posts for the current page
+function displayBlogs(page) {
+  const blogContainer = document.getElementById('blogPosts');
+  if (!blogContainer) {
+    console.error("Element with ID 'blogPosts' not found.");
+    return;
+  }
 
-  // Display blog posts for the current page
-  function displayBlogs(page) {
-    const blogContainer = document.getElementById('blogPosts');
-    if (!blogContainer) {
-      console.error("Element with ID 'blogPosts' not found.");
-      return;
-    }
+  if (!displayedBlogs || displayedBlogs.length === 0) {
+    blogContainer.innerHTML = '<p>No blogs found.</p>';
+    return;
+  }
 
-    if (!displayedBlogs || displayedBlogs.length === 0) {
-      blogContainer.innerHTML = '<p>No blogs found.</p>';
-      return;
-    }
+  const startIndex = (page - 1) * blogsPerPage;
+  const endIndex = Math.min(startIndex + blogsPerPage, displayedBlogs.length);
+  const blogsToDisplay = displayedBlogs.slice(startIndex, endIndex);
 
-    const startIndex = (page - 1) * blogsPerPage;
-    const endIndex = Math.min(startIndex + blogsPerPage, displayedBlogs.length);
-    const blogsToDisplay = displayedBlogs.slice(startIndex, endIndex);
-
-    blogContainer.innerHTML = blogsToDisplay
-      .map(
-        (blog) => `
-        <div class="col-md-4">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h5 class="card-title">${blog.title}</h5>
-              <p class="card-text">${blog.content.substring(0, 100)}...</p>
-              <a href="blogDetails.html?id=${blog._id}" class="btn btn-primary">Read More</a>
-            </div>
+  // Clear container and dynamically add blog posts
+  blogContainer.innerHTML = blogsToDisplay
+    .map(
+      (blog) => `
+      <div class="blog-post">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">${blog.title}</h5>
+            <p class="card-text">${blog.content.substring(0, 100)}...</p>
+            <a href="blogDetails.html?id=${blog._id}" class="btn btn-primary">Read More</a>
           </div>
         </div>
-      `
-      )
-      .join('');
+      </div>
+    `
+    )
+    .join('');
+
+  // Optional: Ensure Flexbox properties are applied (if needed dynamically)
+  blogContainer.style.display = "flex";
+  blogContainer.style.flexWrap = "wrap";
+  blogContainer.style.gap = "20px";
+}
+
+// Setup pagination controls
+function setupPagination() {
+  const totalPages = Math.ceil(displayedBlogs.length / blogsPerPage);
+  const paginationControls = document.getElementById('paginationControls');
+  if (!paginationControls) {
+    console.error("Element with ID 'paginationControls' not found.");
+    return;
   }
 
-  // Setup pagination controls
-  function setupPagination() {
-    const totalPages = Math.ceil(displayedBlogs.length / blogsPerPage);
-    const paginationControls = document.getElementById('paginationControls');
-    if (!paginationControls) {
-      console.error("Element with ID 'paginationControls' not found.");
-      return;
-    }
-
-    let paginationHTML = '';
-    if (currentPage > 1) {
-      paginationHTML += `<button class="btn btn-sm btn-secondary" onclick="changePage(${currentPage - 1})">Previous</button>`;
-    }
-    for (let i = 1; i <= totalPages; i++) {
-      paginationHTML += `
-        <button class="btn btn-sm ${
-          i === currentPage ? 'btn-primary' : 'btn-outline-secondary'
-        }" onclick="changePage(${i})">${i}</button>
-      `;
-    }
-    if (currentPage < totalPages) {
-      paginationHTML += `<button class="btn btn-sm btn-secondary" onclick="changePage(${currentPage + 1})">Next</button>`;
-    }
-
-    paginationControls.innerHTML = paginationHTML;
+  let paginationHTML = '';
+  if (currentPage > 1) {
+    paginationHTML += `<button class="btn btn-sm btn-secondary" onclick="changePage(${currentPage - 1})">Previous</button>`;
+  }
+  for (let i = 1; i <= totalPages; i++) {
+    paginationHTML += `
+      <button class="btn btn-sm ${
+        i === currentPage ? 'btn-primary' : 'btn-outline-secondary'
+      }" onclick="changePage(${i})">${i}</button>
+    `;
+  }
+  if (currentPage < totalPages) {
+    paginationHTML += `<button class="btn btn-sm btn-secondary" onclick="changePage(${currentPage + 1})">Next</button>`;
   }
 
-  // Handle page change for pagination
-  function changePage(page) {
-    currentPage = page;
-    displayBlogs(currentPage);
-  }
+  paginationControls.innerHTML = paginationHTML;
+}
+
+// Handle page change for pagination
+function changePage(page) {
+  currentPage = page;
+  displayBlogs(currentPage);
+}
+
 
   // Filter blogs based on search query
   function searchBlogs() {

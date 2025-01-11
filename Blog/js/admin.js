@@ -36,35 +36,37 @@ async function fetchDashboardStats() {
     }
 }
 
-// Fetch Blogs
 async function fetchBlogs() {
-    try {
-        const response = await fetch(`${BACKEND_URL}/api/blogs`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
-        const blogs = await response.json();
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/blogs`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
 
-        if (response.ok) {
-            if (Array.isArray(blogs) && blogs.length > 0) {
-                blogsTable.innerHTML = blogs.map(blog => `
-                    <tr>
-                        <td>${blog.id}</td>
-                        <td>${blog.title}</td>
-                        <td>
-                            <button class="btn btn-sm btn-warning" onclick="editBlog(${blog.id})">Edit</button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteBlog(${blog.id})">Delete</button>
-                        </td>
-                    </tr>
-                `).join('');
-            } else {
-                blogsTable.innerHTML = '<tr><td colspan="3">No blogs found.</td></tr>';
-            }
-        } else {
-            console.error('Error fetching blogs:', error);
-        }
-    } catch (error) {
-        console.error('Error fetching blogs:', error);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
+
+    const data = await response.json(); // Assuming API returns { blogs: [...] }
+    const blogs = Array.isArray(data.blogs) ? data.blogs : [];
+
+    if (blogs.length > 0) {
+      blogsTable.innerHTML = blogs.map(blog => `
+        <tr>
+          <td>${blog.id}</td>
+          <td>${blog.title}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" onclick="editBlog(${blog.id})">Edit</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteBlog(${blog.id})">Delete</button>
+          </td>
+        </tr>
+      `).join('');
+    } else {
+      blogsTable.innerHTML = '<tr><td colspan="3">No blogs found.</td></tr>';
+    }
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+    blogsTable.innerHTML = '<tr><td colspan="3">Failed to load blogs. Please try again later.</td></tr>';
+  }
 }
 
 // Create or Edit Blog

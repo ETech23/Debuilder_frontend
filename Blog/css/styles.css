@@ -37,7 +37,7 @@ a:hover, .btn-outline-primary:hover {
 }
 
 .navbar-nav .nav-link {
-    color: #white; /* Dark gray */
+    color: white; /* Dark gray */
 }
 
 .navbar-nav .nav-link:hover {
@@ -84,6 +84,7 @@ a:hover, .btn-outline-primary:hover {
 #searchBar {
     background-color: #ffffff; /* White background */
     color: #333333; /* Dark gray text */
+    max-width: 160px;
     border: 1px solid #cccccc; /* Light gray border */
 }
 
@@ -91,6 +92,32 @@ a:hover, .btn-outline-primary:hover {
     border-color: #007bff; /* Blue highlight */
     outline: none;
     box-shadow: 0 0 5px #007bff;
+}
+
+/* Flexbox layout for the blog posts container */
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between; /* Distribute items evenly */
+}
+
+/* Styling for individual blog post containers */
+.blog-post {
+  flex: 1 1 calc(33.333% - 20px); /* 3 items per row with gaps on large screens */
+  box-sizing: border-box; /* Include padding/borders in width/height */
+}
+
+@media (max-width: 992px) {
+  .blog-post {
+    flex: 1 1 calc(50% - 20px); /* 2 items per row on medium screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .blog-post {
+    flex: 1 1 100%; /* Stack items vertically on small screens */
+  }
 }
 
 /* Pagination Controls */
