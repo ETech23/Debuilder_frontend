@@ -1,0 +1,72 @@
+const BACKEND_URL = 'http://localhost:3000';
+
+// Authentication Check
+const token = localStorage.getItem('token');
+if (!token) {
+    alert('Unauthorized access. Please log in.');
+    window.location.href = 'login.html';
+}
+
+// Profile Management
+const profileForm = document.getElementById('profileForm');
+profileForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const payload = { username, email };
+    if (password) payload.password = password;
+
+    await fetch(`${BACKEND_URL}/users/profile`, {
+        method: 'PUT',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+
+    alert('Profile updated!');
+});
+
+// Delete Account
+document.getElementById('deleteAccount').addEventListener('click', async () => {
+    if (confirm('Are you sure you want to delete your account?')) {
+        await fetch(`${BACKEND_URL}/users/delete`, {
+            method: 'DELETE',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        localStorage.removeItem('token');
+        window.location.href = 'register.html';
+    }
+});
+
+// Fetch User Blogs
+async function fetchUserBlogs() {
+    const response = await fetch(`${BACKEND_URL}/users/blogs`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const blogs = await response.json();
+
+    const table = document.getElementById('userBlogsTable');
+    table.innerHTML = blogs.map(blog => `
+        <tr>
+            <td>${blog.id}</td>
+            <td>${blog.title}</td>
+            <td>
+                <button class="btn btn-sm btn-warning">Edit</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteBlog(${blog.id})">Delete</button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// Delete Blog
+async function deleteBlog(id) {
+    await fetch(`${BACKEND_URL}/blogs/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    fetchUserBlogs();
+}
+
+// Load User Data
+fetchUserBlogs();

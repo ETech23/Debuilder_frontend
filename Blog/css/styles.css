@@ -1,0 +1,121 @@
+/* General Styles */
+body {
+    background-color: #D3D3D3;/* Light gray background */
+    color: #333333; /* Dark gray text */
+    font-family: 'Roboto', sans-serif;
+}
+
+a, .btn-outline-primary {
+    color: #007bff; /* Blue */
+}
+
+a:hover, .btn-outline-primary:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+.btn-primary {
+    background-color: #ff8c42; /* Dark orange */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #ffa867; /* Lighter orange on hover */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0,0,0,1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+/* Navbar Styles */
+.navbar {
+    background-color: #333; /* Light gray */
+    border-bottom: 2px solid #333333; /* Dark gray border */
+}
+
+.navbar-brand {
+    color: #007bff; /* Blue */
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #white; /* Dark gray */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff8c42; /* Dark orange */
+}
+
+.dropdown-menu {
+    background-color: #e0e0e0; /* Match navbar */
+    border: 1px solid #333333; /* Dark gray border */
+}
+
+.dropdown-item {
+    color: #333333; /* Dark gray */
+}
+
+.dropdown-item:hover {
+    background-color: #ff8c42; /* Dark orange */
+    color: #f2f2f2; /* Light text */
+}
+
+/* Blog Post Card Styles */
+.card {
+    background-color: #A9A9A9; /* White card */
+    border: 1px solid #dcdcdc; /* Light gray border */
+    color: #333333; /* Dark gray text */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.card-title {
+    color: #007bff; /* Blue */
+    font-weight: bold;
+}
+
+.card-text {
+    color: #666666; /* Gray text */
+}
+
+/* Search Bar */
+#searchBar {
+    background-color: #ffffff; /* White background */
+    color: #333333; /* Dark gray text */
+    border: 1px solid #cccccc; /* Light gray border */
+}
+
+#searchBar:focus {
+    border-color: #007bff; /* Blue highlight */
+    outline: none;
+    box-shadow: 0 0 5px #007bff;
+}
+
+/* Pagination Controls */
+#paginationControls .btn {
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+}
+
+#paginationControls .btn-primary {
+    background-color: #ff8c42;
+    color: #ffffff; /* White text */
+}
+
+#paginationControls .btn:hover {
+    background-color: #ffa867;
+    color: #ffffff;
+}
+
+/* Footer */
+footer {
+    background-color: #333333; /* Dark gray */
+    color: #ffffff; /* White text */
+}
+
+footer p {
+    margin: 0;
+}
