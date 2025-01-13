@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Introduction to HTML",
+    "content": "HTML is the building block of the web. It defines the structure of web pages."
+  },
+  {
+    "title": "Introduction to CSS",
+    "content": "CSS is used for styling HTML elements to make web pages visually appealing."
+  },
+  {
+    "title": "Introduction to JavaScript",
+    "content": "JavaScript brings interactivity to web pages, enabling dynamic behavior."
+  }
+]

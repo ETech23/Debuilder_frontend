@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="contain mt-5"> 
         <h2 class="text-center mb-4">Login to Your Account</h2>
         <form id="loginForm">
             <div class="mb-3">
@@ -25,6 +25,13 @@
             Don't have an account? <a href="register.html">Register here</a>
         </p>
     </div>
+    <style>
+    .contain {
+    max-width: 400px; /* Set maximum width for the container */
+    margin: 0 auto; /* Center the container horizontally */
+        padding: 15px;
+}
+    </style>
         <script>
     const token = localStorage.getItem('token');
     if (token) {
