@@ -33,6 +33,14 @@
                 <input type="file" id="image" name="image" class="form-control">
             </div>
 
+            <!-- Categories -->
+            <div class="form-group">
+    <label for="categories">Select Category</label>
+    <select id="categories" class="form-control" required>
+        <option value="" disabled selected>Select a category</option>
+        <!-- Categories will be dynamically populated -->
+    </select>
+</div>
             <!-- Blog Content (TinyMCE Editor) -->
             <div class="mb-3">
                 <label for="content" class="form-label">Blog Content</label>
@@ -48,75 +56,111 @@
     </div>
 
     <script>
+    // Hardcoded categories
+const categories = [
+    { _id: '1', name: 'Technology' },
+    { _id: '2', name: 'Artificial Intelligence' },
+    { _id: '3', name: 'Education' },
+    { _id: '4', name: 'Health' },
+    { _id: '5', name: 'Travel' }
+];
+
+// Populate the categories dropdown
+const populateCategories = () => {
+    const categoriesDropdown = document.getElementById('categories');
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category._id; // Use the category's ID
+        option.textContent = category.name; // Use the category's name
+        categoriesDropdown.appendChild(option);
+    });
+};
+
+// Call this function when the page loads
+populateCategories();
+    
         // Initialize TinyMCE on the textarea
         tinymce.init({
-            selector: '#content', // Target the textarea with ID "content"
-            height: 400,
-            plugins: [
-                'lists', 'link', 'image', 'code', 'media', 'table', 'wordcount'
-            ],
-            toolbar: 'undo redo | bold italic | bullist numlist | link image | code',
-        });
+    selector: '#content', // Target the textarea with ID "content"
+    height: 400,
+    plugins: [
+        'lists', 'link', 'image', 'code', 'media', 'table', 'wordcount', 
+        'fullscreen', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+        'visualchars', 'charmap', 'insertdatetime', 'advlist', 'autolink', 
+        'emoticons', 'help'
+    ],
+    toolbar: `
+        undo redo | formatselect | bold italic underline strikethrough | 
+        forecolor backcolor | alignleft aligncenter alignright alignjustify | 
+        bullist numlist outdent indent | blockquote | link image media | 
+        insertfile table | preview code fullscreen | charmap emoticons
+    `,
+    menubar: 'file edit view insert format tools table help', // Include a menubar
+    toolbar_mode: 'floating', // Allows the toolbar to float
+    branding: false, // Removes the TinyMCE branding
+});
 
         // Form Submission Handler
         document.getElementById('uploadBlogForm').addEventListener('submit', async function (e) {
-            e.preventDefault(); // Prevent the default form submission
+    e.preventDefault();
 
-            // Get form values
-            const title = document.getElementById('title').value.trim();
-            const content = tinymce.get('content').getContent(); // Fetch TinyMCE content
-            const imageFile = document.getElementById('image').files[0];
+    // Get form values
+    const title = document.getElementById('title').value.trim();
+    const content = tinymce.get('content').getContent();
+    const imageFile = document.getElementById('image').files[0];
+    const category = document.getElementById('categories').value; // Get selected category
 
-            // Validate required fields
-            if (!title || !content) {
-                alert('Please fill in all required fields.');
-                return;
-            }
+    // Validate required fields
+    if (!title || !content || !category) {
+        alert('Please fill in all required fields.');
+        return;
+    }
 
-            // Prepare form data
-            const formData = new FormData();
-            formData.append('title', title);
-            formData.append('content', content);
-            if (imageFile) {
-                formData.append('image', imageFile);
-            }
-            const token = localStorage.getItem('token');
-if (!token) {
-    alert('Unauthorized access. Please log in as an admin.');
-    window.location.href = 'login.html';
-    return;
-}
+    // Prepare form data
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('category', category); // Include category
+    if (imageFile) {
+        formData.append('image', imageFile);
+    }
 
-            // Submit form data to server
-            try {
-                const response = await fetch('https://debuilder.fly.dev/api/blogs', {
-    method: 'POST',
-    headers: {
-        'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
-       
-    },
-    body: formData
-});
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Unauthorized access. Please log in as an admin.');
+        window.location.href = 'login.html';
+        return;
+    }
 
-                const result = await response.json();
-                if (response.ok) {
-                    document.getElementById('message').innerHTML = `
-                        <div class="alert alert-success">Blog uploaded successfully!</div>
-                    `;
-                    tinymce.get('content').setContent(''); // Clear TinyMCE content
-                    document.getElementById('uploadBlogForm').reset(); // Reset form
-                } else {
-                    document.getElementById('message').innerHTML = `
-                        <div class="alert alert-danger">${result.message || 'Failed to upload the blog.'}</div>
-                    `;
-                }
-            } catch (error) {
-                console.error(error);
-                document.getElementById('message').innerHTML = `
-                    <div class="alert alert-danger">An error occurred. Please try again later.</div>
-                `;
-            }
+    // Submit form data to server
+    try {
+        const response = await fetch('https://debuilder.fly.dev/api/blogs', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            body: formData
         });
+
+        const result = await response.json();
+        if (response.ok) {
+            document.getElementById('message').innerHTML = `
+                <div class="alert alert-success">Blog uploaded successfully!</div>
+            `;
+            tinymce.get('content').setContent('');
+            document.getElementById('uploadBlogForm').reset();
+        } else {
+            document.getElementById('message').innerHTML = `
+                <div class="alert alert-danger">${result.message || 'Failed to upload the blog.'}</div>
+            `;
+        }
+    } catch (error) {
+        console.error(error);
+        document.getElementById('message').innerHTML = `
+            <div class="alert alert-danger">An error occurred. Please try again later.</div>
+        `;
+    }
+});
     </script>
 </body>
 </html>

@@ -29,3 +29,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('No blog ID found in the URL');
   }
 });
+
+// JavaScript for scroll detection
+let lastScrollTop = 0;
+const footer = document.getElementById('dynamicFooter');
+
+window.addEventListener('scroll', () => {
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScrollTop > lastScrollTop) {
+        // Scrolling down - hide footer
+        footer.classList.add('hidden');
+    } else {
+        // Scrolling up - show footer
+        footer.classList.remove('hidden');
+    }
+
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // Prevent negative scrolling
+});

@@ -4,9 +4,11 @@ body {
     color: #333333; /* Dark gray text */
     font-family: 'Roboto', sans-serif;
 }
-
+.hidden {
+    display: none;
+}
 a, .btn-outline-primary {
-    color: #007bff; /* Blue */
+    color: white; /* Blue */
 }
 
 a:hover, .btn-outline-primary:hover {
@@ -72,7 +74,7 @@ a:hover, .btn-outline-primary:hover {
 }
 
 .card-title {
-    color: #007bff; /* Blue */
+    color: #2C3E30; /* Blue */
     font-weight: bold;
 }
 
@@ -84,7 +86,7 @@ a:hover, .btn-outline-primary:hover {
 #searchBar {
     background-color: #ffffff; /* White background */
     color: #333333; /* Dark gray text */
-    max-width: 160px;
+    max-width: 170px;
     border: 1px solid #cccccc; /* Light gray border */
 }
 
@@ -102,21 +104,65 @@ a:hover, .btn-outline-primary:hover {
         transform: translateY(-100vh) translateX(20px);
     }
 }
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  gap: 20px; /* Add space between items */
+}
+
+.item {
+  flex: 0 0 100%; /* Default: each item takes 100% width */
+  padding: 20px;
+  box-sizing: border-box;
+    justify-content: space-between; 
+}
+
+/* Media query for medium screens (e.g., tablets, iPads) */
+@media (min-width: 768px) { 
+  .item {
+    flex: 0 0 48%; /* Each item takes approximately 50% width */
+  }
+}
+
+/* Media query for large screens (e.g., laptops, desktops) */
+@media (min-width: 1024px) {
+  .item {
+    flex: 0 0 30%; /* Each item takes approximately 33% width */
+  }
+}
+
+
+.contente {
+    overflow: scroll;
+}
+.table-container {
+    overflow-x: auto;
+}
+
+div-content img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: auto; 
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Crop the image to fill the container */
+}
+
 .div-content {
   border-radius: 12px;
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.1); /* Lighter border */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   background-color: #f8f9fa; /* Light gray background */
   transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
 }
 
 .div-content:hover {
   border-color: #2C3E30; /* Blue border on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
   
-    transform: translateY(-2px) scale(0.9); /* Zoom on hover */
+    transform: translateY(-2px) scale(1.03); /* Zoom on hover */
 }
 
 
@@ -143,8 +189,11 @@ a:hover, .btn-outline-primary:hover {
 .content {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
   justify-content: space-between; /* Distribute items evenly */
+}
+.content img{
+    display: none;
 }
 
 /* Styling for individual blog post containers */
@@ -190,4 +239,18 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+/* Footer Styling */
+#dynamicFooter {
+    background-color: #343a40; /* Dark Gray */
+    color: white;
+    transition: transform 0.3s ease, height 0.3s ease;
+    height: 40px; /* Reduced height */
+    line-height: 40px;
+}
+
+/* Hidden Footer (when scrolling down) */
+#dynamicFooter.hidden {
+    transform: translateY(100%);
 }

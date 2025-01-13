@@ -25,6 +25,14 @@
             Don't have an account? <a href="register.html">Register here</a>
         </p>
     </div>
+        <script>
+    const token = localStorage.getItem('token');
+    if (token) {
+                alert("Already logged in.");
+                window.location.href = "blog.html"; 
+             
+            }
+    </script>
     <script src="js/auth.js"></script>
 </body>
 </html>

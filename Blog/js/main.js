@@ -141,3 +141,58 @@ function changePage(page) {
   // Fetch blogs on page load
   fetchBlogs();
 });
+
+// JavaScript for scroll detection
+let lastScrollTop = 0;
+const footer = document.getElementById('dynamicFooter');
+
+window.addEventListener('scroll', () => {
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScrollTop > lastScrollTop) {
+        // Scrolling down - hide footer
+        footer.classList.add('hidden');
+    } else {
+        // Scrolling up - show footer
+        footer.classList.remove('hidden');
+    }
+
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // Prevent negative scrolling
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const categoriesDropdown = document.getElementById('categoriesList'); // The dropdown container
+
+  // Fetch categories from the backend
+  async function fetchCategories() {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/blogs/categories`);
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch categories: ${response.statusText}`);
+      }
+
+      const categories = await response.json();
+
+      // Populate categories in the dropdown menu
+      categoriesDropdown.innerHTML = categories.map(category => `
+        <li>
+          <a class="dropdown-item" href="#" onclick="filterBlogsByCategory('${category}')">${category}</a>
+        </li>
+      `).join('');
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      categoriesDropdown.innerHTML = '<li><span class="dropdown-item text-danger">Failed to load categories</span></li>';
+    }
+  }
+
+  // Filter blogs by category
+  window.filterBlogsByCategory = (category) => {
+    console.log(`Filtering blogs by category: ${category}`);
+    // Implement your filtering logic or fetch blogs in the selected category
+    // Example: fetchBlogs(currentPage, '', category);
+  };
+
+  // Fetch and display categories on page load
+  fetchCategories();
+});

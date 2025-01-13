@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('role', result.role);
 
                     alert('Login successful!');
-                    window.location.href = result.role === 'admin' ? 'admin-dashboard.html' : 'index.html';
+                    window.location.href = result.role === 'admin' ? 'admin.html' : 'blog.html';
                 } else {
                     alert(result.message || 'Login failed');
                 }
@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    
     /** 📌 Auto Logout on Token Expiry */
     function isTokenExpired() {
         const token = localStorage.getItem('token');
@@ -122,8 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /** 📌 Logout */
 function logout() {
+  if (confirm("Are you sure you want to log out?")) { 
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     alert('Logged out successfully!');
     window.location.href = 'login.html';
+  }
 }

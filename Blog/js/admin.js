@@ -2,6 +2,9 @@ const BACKEND_URL = 'https://debuilder.fly.dev';
 
 // Authentication Check
 const token = localStorage.getItem('token');
+//const myElement = document.getElementById("myElement"); 
+//myElement.innerHTML = token; 
+
 if (!token) {
     alert('Unauthorized access. Please log in as an admin.');
     window.location.href = 'login.html';
@@ -50,26 +53,52 @@ async function fetchBlogs() {
     const blogs = Array.isArray(data.blogs) ? data.blogs : [];
 
     if (blogs.length > 0) {
-      blogsTable.innerHTML = blogs.map(blog => `
-        <tr>
-          <td>${blog.id}</td>
-          <td>${blog.title}</td>
-          <td>
-            <button class="btn btn-sm btn-warning" onclick="editBlog(${blog.id})">Edit</button>
-            <button class="btn btn-sm btn-danger" onclick="deleteBlog(${blog.id})">Delete</button>
-          </td>
-        </tr>
-      `).join('');
-    } else {
-      blogsTable.innerHTML = '<tr><td colspan="3">No blogs found.</td></tr>';
-    }
+    blogsTable.innerHTML = blogs.map(blog => `
+    <tr>
+        <td>${blog._id}</td>
+        <td>${blog.title}</td>
+        <td>
+            <button class="btn btn-sm btn-warning" onclick="editBlog('${blog._id}')">Edit</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteBlog('${blog._id}')">Delete</button>
+        </td>
+    </tr>
+`).join('');
+} else {
+    blogsTable.innerHTML = '<tr><td colspan="3">No blogs found.</td></tr>';
+}
   } catch (error) {
     console.error("Error fetching blogs:", error);
     blogsTable.innerHTML = '<tr><td colspan="3">Failed to load blogs. Please try again later.</td></tr>';
   }
 }
 
+
 // Create or Edit Blog
+async function editBlog(blogId) {
+    try {
+        const response = await fetch(`${BACKEND_URL}/api/blogs/${blogId}`, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        const blog = await response.json();
+
+        if (response.ok) {
+            // Populate form fields with blog data
+            document.getElementById('blogId').value = blog._id;
+            document.getElementById('title').value = blog.title;
+            document.getElementById('content').value = blog.content;
+
+            // Show the modal
+            blogModal.show();
+        } else {
+            alert(blog.message || 'Failed to fetch blog details.');
+        }
+    } catch (error) {
+        console.error(`Failed to fetch blog with ID: ${blogId}`, error);
+    }
+}
+
 blogForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const id = document.getElementById('blogId').value;
@@ -90,12 +119,28 @@ blogForm.addEventListener('submit', async (e) => {
 });
 
 // Delete Blog
-async function deleteBlog(id) {
-    await fetch(`${BACKEND_URL}/api/blogs/${id}`, {
-        method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${token}` }
-    });
-    fetchBlogs();
+async function deleteBlog(blogId) {
+    if (!confirm('Are you sure you want to delete this blog?')) return; // Confirmation dialog
+
+    try {
+        const response = await fetch(`${BACKEND_URL}/api/blogs/${blogId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            alert('Blog deleted successfully!');
+            fetchBlogs(); // Reload the blogs list
+        } else {
+            const result = await response.json();
+            alert(result.message || 'Failed to delete blog.');
+        }
+    } catch (error) {
+        console.error('Error deleting blog:', error);
+        alert('An error occurred while deleting the blog. Please try again.');
+    }
 }
 
 // Fetch Comments

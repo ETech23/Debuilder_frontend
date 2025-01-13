@@ -11,8 +11,8 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="index.html">My Blog - Admin</a>
-            <button id="logoutButton" class="btn btn-outline-danger">Logout</button>
+            <a class="navbar-brand" href="blog.html">My Blog - Admin</a>
+            <button id="logoutButton" class="btn btn-outline-danger" onclick="logout()">Logout</button>
         </div>
     </nav>
 
@@ -44,8 +44,9 @@
 
         <!-- Blog Management Section -->
         <h4>Manage Blogs</h4>
-        <button id="createBlogBtn" class="btn btn-primary mb-3">Create New Blog</button>
-        <table class="table table-bordered">
+        <button id="createBlogBtn" class="btn btn-primary mb-3"><a href="admin-dashboard.html" style="text-decoration: none;">Create New Blog</a></button>
+        <div class="table-container">
+        <table class="table table-bordered" style="over-flow: scroll;">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -57,6 +58,7 @@
                 <!-- Blogs will load dynamically here -->
             </tbody>
         </table>
+        </div>
 
         <!-- Modal for Creating/Editing Blogs -->
         <div class="modal fade" id="blogModal" tabindex="-1" aria-labelledby="blogModalLabel" aria-hidden="true">
@@ -102,6 +104,7 @@
     </table>
 </div>
     </div>
+    <div id="myElement"></div>
     
 
     <!-- Footer -->
