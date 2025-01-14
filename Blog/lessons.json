@@ -10,13 +10,13 @@
         "Differentiate between tags, elements, and attributes."
       ],
       "keyConcepts": {
-        "whatIsHtml": "HTML stands for HyperText Markup Language. It is not a programming language but a markup language used to structure content on the web.",
-        "importance": "HTML is the backbone of the web, providing the foundation for all web content.",
-        "basicStructure": {
+        "WhatIsHtml?": "HTML stands for HyperText Markup Language. It is not a programming language but a markup language used to structure content on the web.",
+        "Importance": "HTML is the backbone of the web, providing the foundation for all web content.",
+        "BasicStructure": {
           "description": "A basic HTML document follows this structure:",
           "example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Page Title</title>\n</head>\n<body>\n    <h1>Welcome to HTML</h1>\n    <p>This is a paragraph of text.</p>\n</body>\n</html>"
         },
-        "commonTags": [
+        "CommonTags": [
           {
             "tag": "Headings",
             "description": "Define headings of different levels, from <h1> (largest) to <h6> (smallest).",

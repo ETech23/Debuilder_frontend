@@ -27,11 +27,11 @@ fetch('https://debuilder.netlify.app/lessons.json')
       if (typeof concept === 'object') {
         conceptBlock.innerHTML = `
           <h4 class="text-dark mt-3">${key.replace(/([A-Z])/g, ' $1')}</h4>
-          <p class="text-secondary">${concept.description}</p>
+          <button class="btn btn-primary mb-2 copy-btn" data-code="${concept.example}">Copy Code</button>
           <pre class="bg-light p-3 rounded">
             <code>${concept.example}</code>
           </pre>
-          <button class="btn btn-primary mt-2 copy-btn" data-code="${concept.example}">Copy Code</button>
+          <p class="text-secondary">${concept.description}</p>
         `;
       } else {
         conceptBlock.innerHTML = `
@@ -52,10 +52,10 @@ fetch('https://debuilder.netlify.app/lessons.json')
         <ul class="list-group list-group-flush">
           ${activity.steps.map(step => `<li class="list-group-item">${step}</li>`).join('')}
         </ul>
+        <button class="btn btn-primary mb-2 copy-btn" data-code="${activity.code}">Copy Code</button>
         <pre class="bg-light p-3 rounded">
           <code>${activity.code}</code>
         </pre>
-        <button class="btn btn-primary mt-2 copy-btn" data-code="${activity.code}">Copy Code</button>
       `;
       activityDiv.appendChild(activityBlock);
     });
