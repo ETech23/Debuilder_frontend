@@ -16,11 +16,11 @@ header nav a:hover {
 
 .card {
   transition: transform 0.2s ease-in-out;
-  background-color: #fff;
+  background-color: #;
 }
 
 .card:hover {
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 pre code {
@@ -34,7 +34,7 @@ pre code {
 
 #lesson-content {
   border-radius: 12px;
-  background: #fff;
+  background: #ECFFDC;
 }
 
 #lesson-content h2 {
@@ -46,7 +46,14 @@ pre code {
   font-size: 1rem;
 }
 
+.code-block {
+    background-color: #f0f3f4;
+    border-radius: 12px;
+    padding: 3px;
+}
+
 button {
+  background-color: #ECFFDC;
   transition: all 0.3s ease-in-out;
 }
 
