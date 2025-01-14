@@ -1,52 +1,8 @@
-/** // Array of Lessons
-const lessons = [
-  "Introduction to HTML",
-  "Introduction to CSS",
-  "Introduction to JavaScript",
-  "DOM Manipulation",
-  "Advanced JavaScript",
-  "Introduction to Bootstrap",
-  "Responsive Design",
-  "Version Control with Git",
-  "Debugging Techniques",
-  "Project Deployment"
-];
-
-let currentLesson = 0;
-
-// Update Lesson Content
-function updateLesson() {
-  document.querySelector('.lesson-title').textContent = `Lesson ${currentLesson + 1}: ${lessons[currentLesson]}`;
-  document.getElementById('lesson-number').textContent = currentLesson + 1;
-  document.getElementById('progress-bar').style.width = `${((currentLesson + 1) / lessons.length) * 100}%`;
-
-  document.getElementById('prev-btn').disabled = currentLesson === 0;
-  document.getElementById('next-btn').disabled = currentLesson === lessons.length - 1;
-}
-
-// Event Listeners for Navigation
-document.getElementById('next-btn').addEventListener('click', () => {
-  if (currentLesson < lessons.length - 1) {
-    currentLesson++;
-    updateLesson();
-  }
-});
-
-document.getElementById('prev-btn').addEventListener('click', () => {
-  if (currentLesson > 0) {
-    currentLesson--;
-    updateLesson();
-  }
-});
-
-// Initialize Content
-updateLesson();**/
-
-fetch('https://debuilder.netlify.app/lessons.json') // Adjust the path if necessary
+fetch('https://debuilder.netlify.app/lessons.json')
   .then(response => response.json())
   .then(data => {
     // Assuming the first lesson
-    const lesson = data[0];
+    const lesson = data[0]; // Access the first lesson
     const { title, content } = lesson;
 
     // Populate the lesson title and overview
@@ -55,6 +11,7 @@ fetch('https://debuilder.netlify.app/lessons.json') // Adjust the path if necess
 
     // Populate Learning Objectives
     const objectivesList = document.getElementById('objectives-list');
+    objectivesList.innerHTML = ''; // Clear any existing content
     content.learningObjectives.forEach(objective => {
       const li = document.createElement('li');
       li.className = 'list-group-item';
@@ -64,7 +21,8 @@ fetch('https://debuilder.netlify.app/lessons.json') // Adjust the path if necess
 
     // Populate Key Concepts
     const keyConceptsDiv = document.getElementById('key-concepts');
-    Object.entries(content.keyConcepts).forEach(([key, concept]) => {
+    keyConceptsDiv.innerHTML = ''; // Clear any existing content
+    Object.entries(content.keyConcepts || {}).forEach(([key, concept]) => {
       const conceptBlock = document.createElement('div');
       if (typeof concept === 'object') {
         conceptBlock.innerHTML = `
@@ -86,7 +44,8 @@ fetch('https://debuilder.netlify.app/lessons.json') // Adjust the path if necess
 
     // Populate Activity
     const activityDiv = document.getElementById('activity');
-    content.activity.forEach(activity => {
+    activityDiv.innerHTML = ''; // Clear any existing content
+    (content.activity || []).forEach(activity => {
       const activityBlock = document.createElement('div');
       activityBlock.innerHTML = `
         <h4 class="text-dark mt-3">${activity.task}</h4>
@@ -112,78 +71,3 @@ fetch('https://debuilder.netlify.app/lessons.json') // Adjust the path if necess
     });
   })
   .catch(error => console.error('Error fetching lessons:', error));
-
-/** //fetch
-let lessons = [];
-let currentLessonIndex = 0;
-
-// Fetch lessons from JSON https://debuilder.netlify.app
-fetch('http://localhost:8000/lessons.json')
-  .then(response => response.json())
-  .then(data => {
-    lessons = data;
-    displayLesson(currentLessonIndex);
-  });
-
-// Display current lesson
-function displayLesson(index) {
-  const lesson = lessons[index];
-  document.querySelector('.lesson-title').textContent = `Lesson ${index + 1}: ${lesson.title}`;
-  document.querySelector('#lesson-content p').textContent = lesson.content;
-  document.getElementById('lesson-number').textContent = index + 1;
-
-  // Update button states
-  document.getElementById('prev-btn').disabled = index === 0;
-  document.getElementById('next-btn').disabled = index === lessons.length - 1;
-
-  // Update progress bar
-  document.getElementById('progress-bar').style.width = `${((index + 1) / lessons.length) * 100}%`;
-}
-
-// Navigation buttons
-document.getElementById('prev-btn').addEventListener('click', () => {
-  if (currentLessonIndex > 0) {
-    currentLessonIndex--;
-    displayLesson(currentLessonIndex);
-  }
-});
-
-document.getElementById('next-btn').addEventListener('click', () => {
-  if (currentLessonIndex < lessons.length - 1) {
-    currentLessonIndex++;
-    displayLesson(currentLessonIndex);
-  }
-});
-
-// JavaScript for scroll detection
-let lastScrollTop = 0;
-const footer = document.getElementById('dynamicFooter');
-
-window.addEventListener('scroll', () => {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (currentScrollTop > lastScrollTop) {
-        // Scrolling down - hide footer
-        footer.classList.add('hidden');
-    } else {
-        // Scrolling up - show footer
-        footer.classList.remove('hidden');
-    }
-
-    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // Prevent negative scrolling
-});
-
-        const token = localStorage.getItem('token');
-
-if (!token) {
-  alert("You are not logged in!\nPlease log in for a better user experience.");
-
-  // Get all elements with the class "hidden"
-  const hiddenElements = document.querySelectorAll('.hidden');
-
-  // Remove the "hidden" class from each element
-  hiddenElements.forEach(element => {
-    element.classList.remove('hidden');
-  });
-}
-**/

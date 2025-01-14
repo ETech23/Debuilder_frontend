@@ -1,5 +1,4 @@
 [
-  [
   {
     "title": "Introduction to HTML",
     "content": {
@@ -52,14 +51,27 @@
         }
       ]
     }
-  }
-],
+  },
   {
     "title": "Introduction to CSS",
-    "content": "CSS is used for styling HTML elements to make web pages visually appealing."
+    "content": {
+      "overview": "CSS is used for styling HTML elements to make web pages visually appealing.",
+      "learningObjectives": [
+        "Understand what CSS is and how it works.",
+        "Learn the different ways to apply CSS to a webpage.",
+        "Explore CSS selectors and properties."
+      ]
+    }
   },
   {
     "title": "Introduction to JavaScript",
-    "content": "JavaScript brings interactivity to web pages, enabling dynamic behavior."
+    "content": {
+      "overview": "JavaScript brings interactivity to web pages, enabling dynamic behavior.",
+      "learningObjectives": [
+        "Understand what JavaScript is and why it is important.",
+        "Learn basic syntax and how to include JavaScript in a webpage.",
+        "Explore variables, functions, and events."
+      ]
+    }
   }
 ]
