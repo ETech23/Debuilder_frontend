@@ -42,7 +42,7 @@ document.getElementById('prev-btn').addEventListener('click', () => {
 // Initialize Content
 updateLesson();**/
 
-fetch('https://debuilder.netlify.app') // Adjust the path if necessary
+fetch('https://debuilder.netlify.app/lessons.json') // Adjust the path if necessary
   .then(response => response.json())
   .then(data => {
     // Assuming the first lesson
