@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Software Training</title>
+  <title>SoTech Academy</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/academy.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
 <body>
   <!-- Header -->
-  <header class="bg-primary text-white py-3 shadow-sm">
+  <header class="bg-#2C3E30 text-white py-3 shadow-sm">
+    
     <div class="container d-flex justify-content-between align-items-center">
-      <h1 class="h4 mb-0">Software Development Training</h1>
+                  <a class="navbar-brand" href="blog.html"><img src="img/logo2.png.jpg" style="max-width: 70px;"></a>
+      <h1 class="h4 mb-0" style="padding: 5px;">SoTech Academy</h1>
       
       <!-- Menu Icon -->
       <div class="dropdown">
@@ -20,9 +22,9 @@
           <i class="bi bi-list"></i> 
         </button>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuButton">
-          <li><a class="dropdown-item" href="#">User Profile</a></li>
-          <li><a class="dropdown-item" href="#">Login</a></li>
-          <li><a class="dropdown-item" href="#">Register</a></li>
+          <li><a class="dropdown-item" href="dashboard.html">Profile</a></li>
+          <li><a class="dropdown-item" href="login.html">Login</a></li>
+          <li><a class="dropdown-item" href="register.html">Register</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#">Settings</a></li>
         </ul>
@@ -32,12 +34,26 @@
 
   <!-- Main Content -->
   <main class="container my-5">
-    <div id="lesson-content" class="card p-4 border-0 shadow-lg">
-      <h2 class="lesson-title text-dark">Lesson 1: Introduction to HTML</h2>
-      <p class="text-secondary mt-3">
-        Welcome to the first lesson on HTML. In this lesson, you'll learn the basics of creating web pages with HTML, including how to structure your content and use common elements.
-      </p>
-    </div>
+    <div id="lesson-content" class="card p-4 border-0 shadow-lg rounded-lg">
+  <h2 class="lesson-title text-primary fw-bold mb-3"></h2>
+  <p class="lesson-overview text-secondary mt-3 fs-5"></p>
+
+  <div class="mt-4">
+    <h3 class="text-dark fw-semibold">Learning Objectives</h3>
+    <ul id="objectives-list" class="list-group list-group-flush"></ul>
+  </div>
+
+  <div class="mt-4">
+    <h3 class="text-dark fw-semibold">Key Concepts</h3>
+    <div id="key-concepts"></div>
+  </div>
+
+  <div class="mt-4">
+    <h3 class="text-dark fw-semibold">Activity</h3>
+    <div id="activity"></div>
+  </div>
+</div>
+    
 
     <!-- Navigation Buttons -->
     <div class="d-flex justify-content-between align-items-center mt-4">
@@ -47,13 +63,14 @@
       </div>
       <button id="next-btn" class="btn btn-primary btn-lg">Next</button>
     </div>
+    <div style="text-align: center"><p class="mb-0">Lesson <span id="lesson-number">1</span> of 10</p></div>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-dark text-white py-3">
-    <div class="container text-center">
-      <p class="mb-0">Lesson <span id="lesson-number">1</span> of 10</p>
-      <small>&copy; 2025 Software Training. All Rights Reserved.</small>
+  <footer id="dynamicFooter" class="bg-dark text-white  fixed-bottom small-footer">
+    <div class="container text-center" style="padding: 0">
+
+      <small>&copy; 2025 SoTech Academy. All Rights Reserved.</small>
     </div>
   </footer>
 

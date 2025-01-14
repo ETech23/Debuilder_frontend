@@ -1,8 +1,59 @@
 [
+  [
   {
     "title": "Introduction to HTML",
-    "content": "HTML is the building block of the web. It defines the structure of web pages."
-  },
+    "content": {
+      "overview": "HTML (HyperText Markup Language) is the fundamental building block of web development. It is used to create the structure and content of a webpage. From text and images to links and multimedia, everything you see on a website starts with HTML.",
+      "learningObjectives": [
+        "Understand what HTML is and why it is essential.",
+        "Identify the basic structure of an HTML document.",
+        "Use fundamental HTML tags to create a webpage.",
+        "Differentiate between tags, elements, and attributes."
+      ],
+      "keyConcepts": {
+        "whatIsHtml": "HTML stands for HyperText Markup Language. It is not a programming language but a markup language used to structure content on the web.",
+        "importance": "HTML is the backbone of the web, providing the foundation for all web content.",
+        "basicStructure": {
+          "description": "A basic HTML document follows this structure:",
+          "example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Page Title</title>\n</head>\n<body>\n    <h1>Welcome to HTML</h1>\n    <p>This is a paragraph of text.</p>\n</body>\n</html>"
+        },
+        "commonTags": [
+          {
+            "tag": "Headings",
+            "description": "Define headings of different levels, from <h1> (largest) to <h6> (smallest).",
+            "example": "<h1>Main Heading</h1>\n<h2>Subheading</h2>"
+          },
+          {
+            "tag": "Paragraphs",
+            "description": "Define blocks of text.",
+            "example": "<p>This is a paragraph.</p>"
+          },
+          {
+            "tag": "Links",
+            "description": "Create hyperlinks to other pages or websites.",
+            "example": "<a href=\"https://example.com\">Visit Example</a>"
+          },
+          {
+            "tag": "Images",
+            "description": "Embed images into the webpage.",
+            "example": "<img src=\"image.jpg\" alt=\"Description of image\">"
+          }
+        ]
+      },
+      "activity": [
+        {
+          "task": "Create Your First Webpage",
+          "steps": [
+            "Open a text editor (e.g., Notepad++ or VSCode).",
+            "Write the provided HTML code and save it as index.html.",
+            "Open the file in a web browser to view your webpage."
+          ],
+          "code": "<!DOCTYPE html>\n<html>\n<head>\n    <title>My First Webpage</title>\n</head>\n<body>\n    <h1>Hello, World!</h1>\n    <p>This is my first webpage created using HTML.</p>\n</body>\n</html>"
+        }
+      ]
+    }
+  }
+],
   {
     "title": "Introduction to CSS",
     "content": "CSS is used for styling HTML elements to make web pages visually appealing."

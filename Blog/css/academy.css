@@ -7,11 +7,29 @@ body {
 }
 
 header {
-  background: #0d6efd;
+  background: #2C3E30;
 }
 
 header nav a:hover {
   text-decoration: underline;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out;
+  background-color: #fff;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+pre code {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.copy-btn:active {
+  background-color: #003d80;
 }
 
 #lesson-content {
@@ -50,6 +68,18 @@ footer {
   font-size: 0.9rem;
 }
 
+#dynamicFooter {
+    background-color: #343a40; /* Dark Gray */
+    color: white;
+    transition: transform 0.3s ease, height 0.3s ease;
+    height: 40px; /* Reduced height */
+    line-height: 40px;
+}
+
+/* Hidden Footer (when scrolling down) */
+#dynamicFooter.hidden {
+    transform: translateY(100%);
+}
 /* Dropdown Menu Styling */
 .dropdown-menu {
   border-radius: 8px;
