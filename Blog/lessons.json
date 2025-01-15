@@ -53,16 +53,55 @@
     }
   },
   {
-    "title": "Introduction to CSS",
-    "content": {
-      "overview": "CSS is used for styling HTML elements to make web pages visually appealing.",
-      "learningObjectives": [
-        "Understand what CSS is and how it works.",
-        "Learn the different ways to apply CSS to a webpage.",
-        "Explore CSS selectors and properties."
-      ]
-    }
-  },
+  "title": "Advanced HTML Concepts",
+  "content": {
+    "overview": "This lesson delves into advanced HTML concepts, covering semantic elements, forms, multimedia, and accessibility. These skills are essential for creating professional, user-friendly, and accessible web pages.",
+    "learningObjectives": [
+      "Understand the purpose and usage of semantic HTML elements.",
+      "Create and style advanced HTML forms.",
+      "Embed and control multimedia content in web pages.",
+      "Implement accessibility best practices using ARIA attributes."
+    ],
+    "keyConcepts": {
+      "SemanticHTML": {
+        "description": "Semantic HTML elements clearly describe their meaning in a way that is both human- and machine-readable.",
+        "example": "<header>\n  <h1>Website Title</h1>\n  <nav>\n    <ul>\n      <li><a href=\"index.html\">Home</a></li>\n      <li><a href=\"about.html\">About</a></li>\n    </ul>\n  </nav>\n</header>\n<main>\n  <article>\n    <h2>Article Title</h2>\n    <p>This is an article.</p>\n  </article>\n</main>\n<footer>\n  <p>&copy; 2025 My Website</p>\n</footer>"
+      },
+      "Forms": {
+        "description": "Forms collect user input and send it to a server for processing.",
+        "example": "<form action=\"/submit\" method=\"POST\">\n  <label for=\"username\">Username:</label>\n  <input type=\"text\" id=\"username\" name=\"username\" required>\n\n  <label for=\"email\">Email:</label>\n  <input type=\"email\" id=\"email\" name=\"email\" required>\n\n  <label for=\"password\">Password:</label>\n  <input type=\"password\" id=\"password\" name=\"password\" required>\n\n  <button type=\"submit\">Submit</button>\n</form>"
+      },
+      "Multimedia": {
+        "description": "HTML allows embedding multimedia elements such as audio and video.",
+        "example": "<video controls>\n  <source src=\"video.mp4\" type=\"video/mp4\">\n  Your browser does not support the video tag.\n</video>\n\n<audio controls>\n  <source src=\"audio.mp3\" type=\"audio/mpeg\">\n  Your browser does not support the audio element.\n</audio>"
+      },
+      "Accessibility": {
+        "description": "Accessibility ensures that web content is usable by all, including people with disabilities.",
+        "example": "<button aria-label=\"Close Menu\">X</button>\n\n<img src=\"image.jpg\" alt=\"Description of image\">\n\n<a href=\"https://example.com\" aria-label=\"Go to Example Website\">Visit Example</a>"
+      }
+    },
+    "activity": [
+      {
+        "task": "Build a Semantic Webpage",
+        "steps": [
+          "Create an HTML file named `semantic.html`.",
+          "Use semantic elements such as <header>, <main>, <section>, and <footer>.",
+          "Include a navigation menu and an article section with headings and paragraphs."
+        ],
+        "code": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Semantic HTML Example</title>\n</head>\n<body>\n  <header>\n    <h1>My Semantic Website</h1>\n    <nav>\n      <ul>\n        <li><a href=\"#\">Home</a></li>\n        <li><a href=\"#\">About</a></li>\n      </ul>\n    </nav>\n  </header>\n  <main>\n    <section>\n      <h2>About Us</h2>\n      <p>We provide top-notch services for all your needs.</p>\n    </section>\n  </main>\n  <footer>\n    <p>&copy; 2025 My Company</p>\n  </footer>\n</body>\n</html>"
+      },
+      {
+        "task": "Create a Form",
+        "steps": [
+          "Create an HTML file named `form.html`.",
+          "Design a form with text, email, and password inputs.",
+          "Include a submit button."
+        ],
+        "code": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Form Example</title>\n</head>\n<body>\n  <form action=\"/submit\" method=\"POST\">\n    <label for=\"name\">Name:</label>\n    <input type=\"text\" id=\"name\" name=\"name\">\n\n    <label for=\"email\">Email:</label>\n    <input type=\"email\" id=\"email\" name=\"email\">\n\n    <button type=\"submit\">Submit</button>\n  </form>\n</body>\n</html>"
+      }
+    ]
+  }
+},
   {
     "title": "Introduction to JavaScript",
     "content": {
