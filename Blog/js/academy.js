@@ -1,3 +1,50 @@
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("coursesContent").innerHTML = `
+        <h2 class="text-center text-secondary">Select "My Courses" or "Available Courses" from the dropdown to proceed.</h2>
+    `;
+});
+
+function showMyCourses() {
+    document.getElementById("coursesContent").innerHTML = `
+        <h2 class="text-center">My Courses</h2>
+        <p class="text-center">Here are the courses you're currently enrolled in.</p>
+        <div class="text-center">
+            <a href="lessons.html" class="btn btn-success">Continue Learning</a>
+        </div>
+    `;
+}
+
+function showAvailableCourses() {
+    document.getElementById("coursesContent").innerHTML = `
+        <h2 class="text-center">Available Courses</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h4>HTML & CSS</h4>
+                    <p>Learn the fundamentals of web structure and styling.</p>
+                    <button class="btn btn-primary">Enroll</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h4>JavaScript Essentials</h4>
+                    <p>Master the basics of programming with JavaScript.</p>
+                    <button class="btn btn-primary">Enroll</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h4>Python for Beginners</h4>
+                    <p>Dive into the world of Python programming.</p>
+                    <button class="btn btn-primary">Enroll</button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
 // Function to enable copy functionality
 function enableCopyFunctionality() {
   document.querySelectorAll('.copy-text').forEach(copyElement => {
