@@ -1,10 +1,34 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    
+function checkLoginStatus() {
+    console.log("Script is running!"); // Debugging log
+
+    const getStartedBtn = document.getElementById("getStartedBtn");
+
+    if (!getStartedBtn) {
+        console.log("Button not found!");
+        return;
+    }
+
+    const token = localStorage.getItem("token"); // Check for token
+
+    console.log("Token found:", token); // Debugging log
+
+    if (!token) {
+        getStartedBtn.style.display = "block"; // Show button if no token
+    }
+}
+
+// Ensure script runs after page load
+window.onload = function () {
+    checkLoginStatus();
+};
     document.getElementById("coursesContent").innerHTML = `
         <h2 class="text-center text-secondary">Select "My Courses" or "Available Courses" from the dropdown to proceed.</h2>
     `;
-});
+
 
 function showMyCourses() {
     document.getElementById("coursesContent").innerHTML = `
@@ -16,6 +40,7 @@ function showMyCourses() {
     `;
 }
 
+    
 function showAvailableCourses() {
     document.getElementById("coursesContent").innerHTML = `
         <h2 class="text-center">Available Courses</h2>
@@ -45,6 +70,15 @@ function showAvailableCourses() {
     `;
 }
 
+   document.getElementById("availableCourses").addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    const section = document.getElementById("available-courses-section"); // Target section
+    if (section) {
+        section.scrollIntoView({ behavior: "smooth" }); // Smooth scroll
+    }
+}); 
+    
 // Function to enable copy functionality
 function enableCopyFunctionality() {
   document.querySelectorAll('.copy-text').forEach(copyElement => {
@@ -241,3 +275,28 @@ function loadProgress() {
   const savedIndex = localStorage.getItem('currentLessonIndex');
   currentLessonIndex = savedIndex ? parseInt(savedIndex, 10) : 0;
 }
+    
+function initializeCourseToggle() {
+    const availableCoursesBtn = document.getElementById("availableCourses");
+    const myCoursesBtn = document.getElementById("myCourses");
+    const availableCoursesSection = document.getElementById("available-courses-section");
+    const lessonsSection = document.getElementById("lessons-section");
+
+    // Show Available Courses Section and Scroll
+    availableCoursesBtn.addEventListener("click", function () {
+        availableCoursesSection.classList.remove("d-none");
+        lessonsSection.classList.add("d-none"); // Hide lessons section
+
+        // Wait for a short delay to ensure visibility before scrolling
+        setTimeout(() => {
+            availableCoursesSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+    });
+}
+
+    
+
+// Call the function to initialize event listeners
+initializeCourseToggle();
+    
+    });

@@ -14,10 +14,87 @@
 <header class="bg-dark text-white text-center py-5">
     <div class="container">
         <h1 class="display-4 fw-bold">Welcome to SoTech Academy</h1>
-        <p class="lead">Your gateway to mastering web development & technology skills.</p>
-        <a href="login.html" class="btn btn-primary btn-lg mt-3">Get Started</a>
+        <p class="lead">Your gateway to mastering Technology skils, Business, Medicare, Agriculture and lots more.</p>
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 5vh;">
+    <a href="login.html" id="getStartedBtn" class="btn btn-primary btn-lg mt-3" style="display: none; max-width: 150px;">
+        Get Started
+    </a>
+</div>
     </div>
 </header>
+    
+    <!-- Dropdown Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">SoTech Academy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown">
+                        Courses
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="lessons.html" id="myCourses">My Courses</a></li>
+                        <li><a class="dropdown-item" href="#" id="availableCourses">Available Courses</a></li> 
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blog.html">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary text-white px-4" href="login.html">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <!-- Courses Section -->
+<div class="container my-5">
+    <div id="coursesContent">
+        <h2 class="text-center text-secondary">Select "My Courses" or "Available Courses" from the dropdown to proceed.</h2>
+    </div>
+    
+    <!-- Available Courses Section (Hidden by Default) -->
+    <div id="availableCourses">
+    <div id="available-courses-section" class="d-none">
+        <h2 class="text-primary fw-bold">Available Courses</h2>
+        <ul id="available-courses-list" class="list-group">
+            <li class="list-group-item"><a href="#">Web Development Fundamentals</a></li>
+            <li class="list-group-item"><a href="#">Python for Beginners</a></li>
+            <li class="list-group-item"><a href="#">Data Structures & Algorithms</a></li>
+            <li class="list-group-item"><a href="#">Introduction to Cybersecurity</a></li>
+            <li class="list-group-item"><a href="#">Machine Learning Basics</a></li>
+        </ul>
+    </div>
+    </div>
+        
+    <!-- Lessons Section (Hidden by Default) -->
+    <div id="lessons-section" class="d-none">
+  
+        <h2 class="text-primary fw-bold">My Courses</h2>
+
+        <!-- Placeholder for Lessons -->
+        <div id="lessons-content"></div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <button id="prev-btn" class="btn btn-outline-secondary btn-lg" disabled>Previous</button>
+
+            <div class="progress flex-grow-1 mx-3" style="height: 8px;">
+                <div id="progress-bar" class="progress-bar bg-primary" style="width: 10%;"></div>
+            </div>
+
+            <button id="next-btn" class="btn btn-primary btn-lg">Next</button>
+        </div>
+
+        <div class="text-center">
+            <p class="mb-0">Lesson <span id="lesson-number">1</span> of 10</p>
+        </div>
+    </div>
+</div>
 
 <!-- Features Section -->
 <section class="container my-5">
@@ -40,41 +117,11 @@
     </div>
 </section>
 
-<!-- Dropdown Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">SoTech Academy</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown">
-                        Courses
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#" onclick="showMyCourses()">My Courses</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showAvailableCourses()">Available Courses</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog.html">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-primary text-white px-4" href="login.html">Sign Up</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
-<!-- Courses Section -->
-<div class="container my-5">
-    <div id="coursesContent">
-        <h2 class="text-center text-secondary">Select "My Courses" or "Available Courses" from the dropdown to proceed.</h2>
-    </div>
-</div>
+
+
+
+    
 
 <!-- Testimonials -->
 <section class="bg-light py-5">
@@ -110,5 +157,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/academy.js"></script>
+    
 </body>
 </html>
