@@ -41,7 +41,7 @@ function showMyCourses() {
 }
 
     
-function showAvailableCourses() {
+ function showAvailableCourses() {
     document.getElementById("coursesContent").innerHTML = `
         <h2 class="text-center">Available Courses</h2>
         <div class="row">
