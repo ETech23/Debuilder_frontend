@@ -1,12 +1,10 @@
-const BACKEND_URL = 'https://debuilder.fly.dev';
-
 document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
   const blogId = params.get('id'); // Get the blog ID from the URL
 
   if (blogId) {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/blogs/${blogId}`);
+      const response = await fetch(`https://debuilder.fly.dev/api/blogs/${blogId}`);
       if (!response.ok) throw new Error('Failed to fetch blog details');
       const blog = await response.json();
 
@@ -30,8 +28,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-// JavaScript for scroll detection
-let lastScrollTop = 0;
+/** // JavaScript for scroll detection
+ let lastScrollTop = 0;
 const footer = document.getElementById('dynamicFooter');
 
 window.addEventListener('scroll', () => {
@@ -46,4 +44,4 @@ window.addEventListener('scroll', () => {
     }
 
     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // Prevent negative scrolling
-});
+});**/
