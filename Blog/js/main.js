@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Fetch categories from the backend
   async function fetchCategories() {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/blogs/categories`);
+      const response = await fetch(`${BACKEND_URL}/api/blogs/categories:categories`);
       
       if (!response.ok) {
         throw new Error(`Failed to fetch categories: ${response.statusText}`);

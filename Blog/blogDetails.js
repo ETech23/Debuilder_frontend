@@ -1,3 +1,76 @@
+// Add this to your blogDetails.js file
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle mobile menu
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    navbarToggler.addEventListener('click', function() {
+        navbarCollapse.classList.toggle('show');
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.navbar') && navbarCollapse.classList.contains('show')) {
+            navbarCollapse.classList.remove('show');
+        }
+    });
+    
+    // Close mobile menu when window resizes to desktop size
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 992 && navbarCollapse.classList.contains('show')) {
+            navbarCollapse.classList.remove('show');
+        }
+    });
+});
+
+// Add this to your blogDetails.js file
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to handle element modifications
+    const observeElement = () => {
+        const targetNode = document.querySelector('section.hero');
+        
+        if (!targetNode) return;
+
+        // Create a MutationObserver instance
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'id') {
+                    const section = mutation.target;
+                    
+                    // Check if the id is 'blogDetails'
+                    if (section.id === 'blogDetails') {
+                        section.style.background = 'white';
+                        
+                        // Update text colors
+                        const paragraphs = section.getElementsByTagName('p');
+                        const headings = section.getElementsByTagName('h1');
+                        
+                        Array.from(paragraphs).forEach(p => {
+                            p.style.color = '#1f2937'; // var(--text-color)
+                            p.style.backgroundColor = 'white';
+                        });
+                        
+                        Array.from(headings).forEach(h => {
+                            h.style.color = '#1f2937'; // var(--text-color)
+                        });
+                    }
+                }
+            });
+        });
+
+        // Start observing the target node for attribute changes
+        observer.observe(targetNode, {
+            attributes: true,
+            attributeFilter: ['id'] // only watch for id changes
+        });
+    };
+
+    // Initialize the observer
+    observeElement();
+});
+
 document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
   const blogId = params.get('id'); // Get the blog ID from the URL

@@ -1,205 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog Details</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/blogDetails.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Opportunities Hub</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/blogDetails.css">
 </head>
 <body>
-   <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="blog.html"><img src="img/logo2.png.jpg" style="max-width: 70px;"></a>
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
+    <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="blog.html" style="color: white">
+                <img >Global Opportunities Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="blog.html" style="color: white;">Home</a>
+                        <a class="nav-link active" href="blog.html">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="categoriesDropdown"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
+                        <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown">
                             Categories
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="categoriesDropdown" id="categoriesList">
-                            <!-- Categories dynamically inserted -->
-                        </ul>
+                        <ul class="dropdown-menu" id="categoriesList"></ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard.html">Profile</a>
                     </li>
                 </ul>
-                <div>
-                    <a href="login.html" class="btn btn-outline-primary hidden">Sign up</a>
-                    
+                <div class="nav-auth">
+                    <a href="login.html" class="btn btn-outline-light hidden">Sign up</a>
                 </div>
             </div>
         </div>
     </nav>
-  
-    </head>
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">Global Opportunities Hub</div>
-            <div class="nav-links">
-                <a href="#scholarships">Scholarships</a>
-                <a href="#jobs">Jobs</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
-    </header>
-    <input type="text" id="searchBar" class="form-control" placeholder="Search blog titles..." aria-label="Search Blogs"/>
-    <div id="blogDetails">
-      <section class="hero">
-        <h1>Your Gateway to Global Opportunities</h1>
-        <p>Discover fully-funded scholarships and international jobs with visa sponsorship. Your journey to a global career starts here.</p>
-        <a href="#opportunities" class="cta-button">Explore Opportunities</a>
-    </section>
 
-    <section class="features">
-        <div class="feature-card">
-            <h3>Scholarships</h3>
-            <p>Access a curated list of fully-funded scholarships worldwide. Including tuition, stipend, and visa support for international students.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Job Opportunities</h3>
-            <p>Find international career opportunities with companies offering visa sponsorship, competitive salaries, and relocation support.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Application Guides</h3>
-            <p>Step-by-step guides on application processes, visa requirements, and tips to increase your chances of success.</p>
-        </div>
-    </section>
-
-    <section class="recent-posts">
-        <h2>Latest Opportunities</h2>
-        <div id="blogPosts" class="posts-grid">
-            <div class="post-card">
-                <img src="/api/placeholder/400/200" alt="Scholarship opportunity">
-                <div class="post-content">
-                    <h3>Full Scholarship at MIT</h3>
-                    <p>Full funding available for graduate studies in Computer Science. Deadline: December 2025</p>
-                </div>
-            </div>
-            <div class="post-card">
-                <img src="/api/placeholder/400/200" alt="Job opportunity">
-                <div class="post-content">
-                    <h3>Senior Developer - Google</h3>
-                    <p>Remote position with visa sponsorship. Competitive salary and benefits package.</p>
-                </div>
-            </div>
-            <div class="post-card">
-                <img src="/api/placeholder/400/200" alt="Research opportunity">
-                <div class="post-content">
-                    <h3>Research Fellowship - ETH Zurich</h3>
-                    <p>3-year fully funded research position in Robotics. Includes monthly stipend.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="newsletter">
-        <h2>Never Miss an Opportunity</h2>
-        <p>Subscribe to our newsletter and get the latest scholarships and job opportunities delivered to your inbox.</p>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Enter your email address" required>
-            <button type="submit">Subscribe</button>
-        </form>
-    </section>
+   <div class="container search-container">
+        <input type="text" id="searchBar" class="form-control" placeholder="Search blog titles...">
+     
     </div>
-                    
+    <div class="container" style="padding: 0;">
+        <div class="container" >
+    <all id="blogDetails" class="blog">
+    <!-- Hero Section -->
+    <section class="hero" >
+        <div class="container">
+            <h1>Your Gateway to Global Opportunities</h1>
+            <p>Discover fully-funded scholarships and international jobs with visa sponsorship. Your journey to a global career starts here.</p>
+            <a href="#opportunities" class="cta-button">Explore Opportunities</a>
+        </div>
+    </section>
+    </all>
+    </div>
+    </div>
+    <!-- Search Bar -->
+   
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Scholarships</h3>
+                        <p>Access a curated list of fully-funded scholarships worldwide. Including tuition, stipend, and visa support.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>Job Opportunities</h3>
+                        <p>Find international career opportunities with companies offering visa sponsorship and relocation support.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Application Guides</h3>
+                        <p>Step-by-step guides on application processes, visa requirements, and tips for success.</p>
+                    </div>
+                </div>
             </div>
-            <div >
-            <div id="blogPosts" class="row content content-grid">
-                <!-- Blog posts will load dynamically -->
-            </div>
-            </div>
-            <div id="paginationControls" class="d-flex justify-content-center mt-4">
-                <!-- Pagination dynamically inserted -->
-            </div>
-            <!--  
-  </div>
-		<!-- Footer -->
-<footer id="dynamicFooter" class="text-center py-2 fixed-bottom small-footer">
-    <p>© 2025 Global Opportunities Hub. All rights reserved.</p>
-</footer>
-  
-  <style>
-.top-text {
-  position: fixed;
-  top: 10px; /* Adjust top position as needed */
-  left: 50%;
-  transform: translateX(-50%); /* Center horizontally */
-  z-index: 9999; /* Ensure it's on top of other content */
-  color: orange; /* Text color */
-  font-size: 18px; 
-  opacity: 0; /* Initially hidden */
-  transition: opacity 0.5s ease-in-out; /* Smooth transition */
-}
+        </div>
+    </section>
 
-.show {
-  opacity: 1; /* Make it visible */
-}
-</style>
+    <!-- Blog Posts Grid -->
+    <section class="blog-section">
+        <div class="container">
+            <div id="blogPosts" class="content-grid"></div>
+            <div id="paginationControls" class="pagination-container"></div>
+        </div>
+    </section>
 
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Never Miss an Opportunity</h2>
+            <p>Subscribe to our newsletter for the latest scholarships and job opportunities.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
 
-<div class="top-text" id="myText">Under Development!</div>
+    <!-- Footer -->
+    <footer id="dynamicFooter" class="text-center py-2 fixed-bottom small-footer">
+    <p>&copy; 2025 Global Opportunities Hub. All rights reserved.</p>
+    
+    </footer>
 
-<script>
-function showText() {
-  var textElement = document.getElementById("myText");
-  textElement.classList.add("show");
+    <!-- Development Notice -->
+    <div class="top-text" id="myText">Under Development!</div>
 
-  setTimeout(function() {
-    textElement.classList.remove("show");
-  }, 5000); // Hide after 5 seconds
-}
-
-// Show the text initially or at a random interval
-showText(); 
-// Uncomment the line below for random intervals
- setInterval(showText, Math.random() * 10000 + 10000); // Show every 5-15 seconds
-</script>
-  <script>
-        const token = localStorage.getItem('token');
-
-if (!token) {
-  alert("You are not logged in!\nPlease log in for a better user experience.");
-
-  // Get all elements with the class "hidden"
-  const hiddenElements = document.querySelectorAll('.hidden');
-
-  // Remove the "hidden" class from each element
-  hiddenElements.forEach(element => {
-    element.classList.remove('hidden');
-  });
-}
-</script>
-   <!-- Bootstrap JavaScript -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <script src="js/main.js"></script>
-  <script src="blogDetails.js"></script>
+    <script src="js/main.js"></script>
+    <script src="blogDetails.js"></script>
 </body>
 </html>
